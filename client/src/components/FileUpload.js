@@ -32,12 +32,13 @@ const FileUpload = () => {
             )
           );
 
-          // Clear percentage
+          //   Clear percentage
           setTimeout(() => setUploadPercentage(0), 10000);
         },
       });
 
       const { fileName, filePath } = res.data;
+      console.log(fileName, filePath);
 
       setUploadedFile({ fileName, filePath });
 
@@ -49,14 +50,14 @@ const FileUpload = () => {
         setMessage(err.response.data.msg);
       }
     }
+
+    console.log("OUT");
   };
 
-  if (uploadedFile) {
-    console.log(uploadedFile.filePath);
-  }
+  console.log(message);
 
   return (
-    <Fragment>
+    <div>
       {message ? <Message msg={message} /> : null}
       <form onSubmit={onSubmit}>
         <div className="custom-file mb-4">
@@ -71,7 +72,7 @@ const FileUpload = () => {
           </label>
         </div>
 
-        <Progress percentage={uploadPercentage} />
+        {/* <Progress percentage={uploadPercentage} /> */}
 
         <input
           type="submit"
@@ -87,7 +88,7 @@ const FileUpload = () => {
           </div>
         </div>
       ) : null}
-    </Fragment>
+    </div>
   );
 };
 
